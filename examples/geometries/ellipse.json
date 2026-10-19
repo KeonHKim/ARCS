@@ -1,0 +1,21 @@
+{
+  "$schema": "../../schema/geometry.schema.json",
+  "format": "arcs.geometry/1",
+  "name": "Ellipse: half axes 60 and 30 mm",
+  "units": "mm",
+  "aperture": {
+    "type": "ellipse",
+    "semi_axes": [
+      60,
+      30
+    ],
+    "rotation_deg": 20
+  },
+  "mesh": {
+    "max_panel_length": 5,
+    "curve_tolerance": 0.05,
+    "minimum_panels": 96,
+    "corner_grading": 2,
+    "integration_order": 4
+  }
+}

@@ -1,0 +1,475 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ARCS geometry input version 1",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "format": {
+      "const": "arcs.geometry/1"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "units": {
+      "enum": [
+        "m",
+        "mm",
+        "um",
+        "\u00b5m",
+        "nm"
+      ]
+    },
+    "aperture": {
+      "$ref": "#/$defs/shape"
+    },
+    "interfaces": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/interface"
+      }
+    },
+    "regions": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "$ref": "#/$defs/region"
+      }
+    },
+    "beam": {
+      "$ref": "#/$defs/point"
+    },
+    "mesh": {
+      "$ref": "#/$defs/mesh"
+    },
+    "materials": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/material"
+      }
+    },
+    "beta": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "maximum": 1,
+      "default": 1
+    },
+    "roughness": {
+      "type": "object",
+      "properties": {
+        "model": {
+          "const": "conductivity_gradient"
+        },
+        "rms_height": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "In geometry units; aperture is the air-side reference plane"
+        },
+        "slices": {
+          "type": "integer",
+          "minimum": 4,
+          "default": 32
+        },
+        "extent_sigma": {
+          "type": "number",
+          "minimum": 4,
+          "default": 5
+        },
+        "interface_heights": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          }
+        }
+      },
+      "required": [
+        "rms_height"
+      ],
+      "additionalProperties": false
+    },
+    "boundary_meshes": {
+      "type": "object",
+      "description": "Per-physical-boundary overrides keyed by aperture/interface name; missing settings inherit mesh defaults.",
+      "additionalProperties": {
+        "$ref": "#/$defs/mesh"
+      }
+    }
+  },
+  "required": [
+    "units",
+    "aperture"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "point": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      },
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "circle": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "circle"
+        },
+        "radius": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "center": {
+          "$ref": "#/$defs/point"
+        }
+      },
+      "required": [
+        "type",
+        "radius"
+      ],
+      "additionalProperties": false
+    },
+    "ellipse": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "ellipse"
+        },
+        "semi_axes": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "center": {
+          "$ref": "#/$defs/point"
+        },
+        "rotation_deg": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "type",
+        "semi_axes"
+      ],
+      "additionalProperties": false
+    },
+    "rectangle": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "rectangle"
+        },
+        "width": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "height": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "center": {
+          "$ref": "#/$defs/point"
+        },
+        "rotation_deg": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "type",
+        "width",
+        "height"
+      ],
+      "additionalProperties": false
+    },
+    "rounded_rectangle": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "rounded_rectangle"
+        },
+        "width": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "height": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "corner_radius": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "center": {
+          "$ref": "#/$defs/point"
+        },
+        "rotation_deg": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "type",
+        "width",
+        "height",
+        "corner_radius"
+      ],
+      "additionalProperties": false
+    },
+    "polygon": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "polygon"
+        },
+        "points": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/point"
+          },
+          "minItems": 3
+        }
+      },
+      "required": [
+        "type",
+        "points"
+      ],
+      "additionalProperties": false
+    },
+    "csv": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "csv"
+        },
+        "file": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "type",
+        "file"
+      ],
+      "additionalProperties": false
+    },
+    "line": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "line"
+        },
+        "to": {
+          "$ref": "#/$defs/point"
+        }
+      },
+      "required": [
+        "type",
+        "to"
+      ],
+      "additionalProperties": false
+    },
+    "arc": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "arc"
+        },
+        "to": {
+          "$ref": "#/$defs/point"
+        },
+        "center": {
+          "$ref": "#/$defs/point"
+        },
+        "direction": {
+          "enum": [
+            "cw",
+            "ccw"
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "to",
+        "center"
+      ],
+      "additionalProperties": false
+    },
+    "path": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "path"
+        },
+        "start": {
+          "$ref": "#/$defs/point"
+        },
+        "segments": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/$defs/line"
+              },
+              {
+                "$ref": "#/$defs/arc"
+              }
+            ]
+          }
+        }
+      },
+      "required": [
+        "type",
+        "start",
+        "segments"
+      ],
+      "additionalProperties": false
+    },
+    "shape": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/circle"
+        },
+        {
+          "$ref": "#/$defs/ellipse"
+        },
+        {
+          "$ref": "#/$defs/rectangle"
+        },
+        {
+          "$ref": "#/$defs/rounded_rectangle"
+        },
+        {
+          "$ref": "#/$defs/polygon"
+        },
+        {
+          "$ref": "#/$defs/csv"
+        },
+        {
+          "$ref": "#/$defs/path"
+        }
+      ]
+    },
+    "interface": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "shape": {
+          "$ref": "#/$defs/shape"
+        }
+      },
+      "required": [
+        "name",
+        "shape"
+      ],
+      "additionalProperties": false
+    },
+    "region": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "material": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "name",
+        "material"
+      ],
+      "additionalProperties": false
+    },
+    "mesh": {
+      "type": "object",
+      "properties": {
+        "max_panel_length": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "curve_tolerance": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "corner_grading": {
+          "type": "number",
+          "minimum": 1
+        },
+        "integration_order": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "minimum_panels": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "material": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/conducting_material"
+        },
+        {
+          "$ref": "#/$defs/pec_material"
+        }
+      ]
+    },
+    "conducting_material": {
+      "type": "object",
+      "properties": {
+        "conductivity": {
+          "type": "number",
+          "minimum": 0,
+          "description": "SI conductivity in S/m"
+        },
+        "mu_r": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "default": 1
+        },
+        "epsilon_r": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "default": 1
+        },
+        "relaxation_time": {
+          "type": "number",
+          "minimum": 0,
+          "default": 0,
+          "description": "seconds"
+        }
+      },
+      "required": [
+        "conductivity"
+      ],
+      "additionalProperties": false
+    },
+    "pec_material": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "pec"
+        }
+      },
+      "required": [
+        "kind"
+      ],
+      "additionalProperties": false,
+      "description": "Exact PEC termination; no bulk conductivity or dielectric parameters."
+    }
+  }
+}

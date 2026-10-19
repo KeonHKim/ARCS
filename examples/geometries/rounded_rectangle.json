@@ -1,0 +1,19 @@
+{
+  "$schema": "../../schema/geometry.schema.json",
+  "format": "arcs.geometry/1",
+  "name": "Rounded rectangle: 8 mm corner radius",
+  "units": "mm",
+  "aperture": {
+    "type": "rounded_rectangle",
+    "width": 120,
+    "height": 60,
+    "corner_radius": 8
+  },
+  "mesh": {
+    "max_panel_length": 5,
+    "curve_tolerance": 0.05,
+    "minimum_panels": 96,
+    "corner_grading": 2,
+    "integration_order": 4
+  }
+}

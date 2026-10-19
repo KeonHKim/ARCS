@@ -1,0 +1,34 @@
+# Python bytecode and package/build artifacts
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Notebook temporary files
+.ipynb_checkpoints/
+
+# Local editor settings, credentials and results
+.vscode/
+.idea/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+results/
+outputs/
+*.log
+
+# Release archive checksums are for the distributable ZIP, not the Git source tree
+SHA256SUMS.json
+
+# Accidental command-line output in reference source
+/references/SurfaceImpedance/--case

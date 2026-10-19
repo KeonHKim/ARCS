@@ -1,0 +1,60 @@
+{
+  "$schema": "../../schema/geometry.schema.json",
+  "format": "arcs.geometry/1",
+  "name": "Native line/arc path: racetrack aperture",
+  "units": "mm",
+  "aperture": {
+    "type": "path",
+    "start": [
+      -30,
+      -20
+    ],
+    "segments": [
+      {
+        "type": "line",
+        "to": [
+          30,
+          -20
+        ]
+      },
+      {
+        "type": "arc",
+        "center": [
+          30,
+          0
+        ],
+        "to": [
+          30,
+          20
+        ],
+        "direction": "ccw"
+      },
+      {
+        "type": "line",
+        "to": [
+          -30,
+          20
+        ]
+      },
+      {
+        "type": "arc",
+        "center": [
+          -30,
+          0
+        ],
+        "to": [
+          -30,
+          -20
+        ],
+        "direction": "ccw"
+      }
+    ]
+  },
+  "mesh": {
+    "max_panel_length": 5,
+    "curve_tolerance": 0.05,
+    "minimum_panels": 96,
+    "corner_grading": 2,
+    "integration_order": 4
+  }
+}

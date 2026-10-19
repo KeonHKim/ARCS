@@ -1,0 +1,10 @@
+{
+  "user_attachment": "SurfaceImpedance-main(3).zip",
+  "user_attachment_sha256": "53bbc9577b0f67eaca4270d62616e8486f9af59df8a24f74975f23b93c3d29da",
+  "models_py_sha256": "19df430fe91b3679edb1dcc1e9c520fe45bf9c058cad66edadcb47517cab97da",
+  "models_py_unmodified": true,
+  "use": "Independent benchmark only; not imported by numerical field assembly",
+  "rough_reference": "rough-single finite-difference conductivity-gradient ODE",
+  "ARCS_reference_conversion": "Complex conjugation for the DC-material Fourier convention; conversion to matching circular vacuum reference only in benchmark",
+  "license_note": "Supplied reference is preserved with its own provenance; no new ownership or license is asserted for it."
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "../../schema/geometry.schema.json",
+  "format": "arcs.geometry/1",
+  "name": "Custom outline from an XY table",
+  "units": "mm",
+  "aperture": {
+    "type": "csv",
+    "file": "custom_outline.csv"
+  },
+  "mesh": {
+    "max_panel_length": 5,
+    "curve_tolerance": 0.05,
+    "minimum_panels": 96,
+    "corner_grading": 2,
+    "integration_order": 4
+  }
+}

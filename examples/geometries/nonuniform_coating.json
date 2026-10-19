@@ -1,0 +1,102 @@
+{
+  "$schema": "../../schema/geometry.schema.json",
+  "format": "arcs.geometry/1",
+  "name": "Independent interfaces: varying coating thickness",
+  "units": "mm",
+  "aperture": {
+    "type": "polygon",
+    "points": [
+      [
+        -40,
+        -30
+      ],
+      [
+        40,
+        -30
+      ],
+      [
+        40,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        30
+      ],
+      [
+        -40,
+        30
+      ]
+    ]
+  },
+  "mesh": {
+    "max_panel_length": 5,
+    "curve_tolerance": 0.05,
+    "minimum_panels": 96,
+    "corner_grading": 2,
+    "integration_order": 4
+  },
+  "interfaces": [
+    {
+      "name": "coating_outer",
+      "shape": {
+        "type": "polygon",
+        "points": [
+          [
+            -44,
+            -34
+          ],
+          [
+            43,
+            -34
+          ],
+          [
+            43,
+            3
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            3,
+            33
+          ],
+          [
+            -44,
+            33
+          ]
+        ]
+      }
+    }
+  ],
+  "regions": [
+    {
+      "name": "beam_region",
+      "material": "vacuum"
+    },
+    {
+      "name": "coating",
+      "material": "NEG"
+    },
+    {
+      "name": "bulk_wall",
+      "material": "Cu"
+    }
+  ],
+  "beam": [
+    -20,
+    -10
+  ],
+  "materials": {
+    "Cu": {
+      "conductivity": 58000000.0
+    },
+    "NEG": {
+      "conductivity": 200000.0
+    }
+  }
+}

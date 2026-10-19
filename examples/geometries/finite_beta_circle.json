@@ -1,0 +1,70 @@
+{
+  "format": "arcs.geometry/1",
+  "name": "Copper circle, beta = 0.7",
+  "units": "mm",
+  "aperture": {
+    "type": "circle",
+    "radius": 30
+  },
+  "interfaces": [],
+  "regions": [
+    {
+      "name": "beam_region",
+      "material": "vacuum"
+    },
+    {
+      "name": "exterior",
+      "material": "Cu"
+    }
+  ],
+  "beam": [
+    0.0,
+    0.0
+  ],
+  "mesh": {
+    "max_panel_length": 1.0,
+    "curve_tolerance": 0.01,
+    "corner_grading": 2.0,
+    "integration_order": 4,
+    "minimum_panels": 128
+  },
+  "materials": {
+    "vacuum": {
+      "conductivity": 0.0,
+      "mu_r": 1.0,
+      "epsilon_r": 1.0,
+      "relaxation_time": 0.0
+    },
+    "air": {
+      "conductivity": 0.0,
+      "mu_r": 1.0,
+      "epsilon_r": 1.0,
+      "relaxation_time": 0.0
+    },
+    "Cu": {
+      "conductivity": 58000000.0,
+      "mu_r": 1.0,
+      "epsilon_r": 1.0,
+      "relaxation_time": 0.0
+    },
+    "Al": {
+      "conductivity": 35000000.0,
+      "mu_r": 1.0,
+      "epsilon_r": 1.0,
+      "relaxation_time": 0.0
+    },
+    "SS": {
+      "conductivity": 1400000.0,
+      "mu_r": 1.0,
+      "epsilon_r": 1.0,
+      "relaxation_time": 0.0
+    },
+    "NEG": {
+      "conductivity": 200000.0,
+      "mu_r": 1.0,
+      "epsilon_r": 1.0,
+      "relaxation_time": 0.0
+    }
+  },
+  "beta": 0.7
+}

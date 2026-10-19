@@ -1,0 +1,48 @@
+{
+  "$schema": "../../schema/geometry.schema.json",
+  "format": "arcs.geometry/1",
+  "name": "Circular aperture with an explicit 150 nm coating",
+  "units": "mm",
+  "aperture": {
+    "type": "circle",
+    "radius": 30
+  },
+  "mesh": {
+    "max_panel_length": 5,
+    "curve_tolerance": 0.05,
+    "minimum_panels": 96,
+    "corner_grading": 2,
+    "integration_order": 4
+  },
+  "interfaces": [
+    {
+      "name": "NEG_outer",
+      "shape": {
+        "type": "circle",
+        "radius": 30.00015
+      }
+    }
+  ],
+  "regions": [
+    {
+      "name": "beam_region",
+      "material": "vacuum"
+    },
+    {
+      "name": "coating",
+      "material": "NEG"
+    },
+    {
+      "name": "substrate",
+      "material": "Cu"
+    }
+  ],
+  "materials": {
+    "Cu": {
+      "conductivity": 58000000.0
+    },
+    "NEG": {
+      "conductivity": 200000.0
+    }
+  }
+}

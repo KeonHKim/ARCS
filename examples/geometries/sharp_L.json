@@ -1,0 +1,46 @@
+{
+  "$schema": "../../schema/geometry.schema.json",
+  "format": "arcs.geometry/1",
+  "name": "L-shaped aperture: sharp reentrant corner",
+  "units": "mm",
+  "aperture": {
+    "type": "polygon",
+    "points": [
+      [
+        -40,
+        -30
+      ],
+      [
+        40,
+        -30
+      ],
+      [
+        40,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        30
+      ],
+      [
+        -40,
+        30
+      ]
+    ]
+  },
+  "mesh": {
+    "max_panel_length": 5,
+    "curve_tolerance": 0.05,
+    "minimum_panels": 96,
+    "corner_grading": 2,
+    "integration_order": 4
+  },
+  "beam": [
+    -20,
+    -10
+  ]
+}

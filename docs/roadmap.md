@@ -1,0 +1,5 @@
+# ARCS development status
+
+Implemented: JSON/XY CSV/DXF geometry; drawing and crop/Boolean GUI; visible boundary meshes and corner grading; full synchronous Maxwell fields for finite beta; nested conducting interfaces including independently shaped smooth coatings; longitudinal and analytic dipolar/quadrupolar tensors; Gaussian conductivity-gradient roughness through material-interface BEM; independent circular bare/coated/graded references; indirect space-charge longitudinal and transverse tensors from the aperture BEM; the user's DCT-I/DST-I converter including signed-time inversion. The MQS and local planar-wall backends are removed.
+
+Further work: the beta=1 open-exterior limit, finite insulating gaps and general dielectric/radiating exteriors; a normal-depth specification for roughness on independently drawn interfaces; longitudinally varying geometric roughness; independent arbitrary-shape full-Maxwell comparisons and quantitative corner convergence; direct space charge for finite beam profiles; converged wake spectra with separate bandwidth/time-window studies. The current circular and reduced-depth benchmarks do not replace these validations.

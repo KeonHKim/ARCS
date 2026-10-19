@@ -1,0 +1,19 @@
+{
+  "format": "arcs.geometry/1",
+  "name": "Independent meshes: aperture and coating",
+  "units": "mm",
+  "aperture": {"type": "circle", "radius": 30},
+  "interfaces": [{"name": "coat_outer", "shape": {"type": "circle", "radius": 35}}],
+  "regions": [
+    {"name": "beam", "material": "vacuum"},
+    {"name": "coating", "material": "NEG"},
+    {"name": "bulk", "material": "Cu"}
+  ],
+  "materials": {"NEG": {"conductivity": 200000}, "Cu": {"conductivity": 58000000}},
+  "mesh": {"minimum_panels": 64, "max_panel_length": 3, "curve_tolerance": 0.05,
+           "corner_grading": 2, "integration_order": 4},
+  "boundary_meshes": {
+    "aperture": {"minimum_panels": 128},
+    "coat_outer": {"minimum_panels": 192}
+  }
+}
